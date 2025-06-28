@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
+:root {
+  --primary-color: #000000; /* 黒 */
+  --secondary-color: #ffffff; /* 白 */
+  --text-color: #333333; /* 濃い灰色 */
+}
+
+html {
+  scroll-behavior: smooth; /* スムーズスクロールを有効にする */
+  scroll-snap-type: y mandatory; /* Y軸方向のスクロールスナップを必須に設定 */
+}
+
+body {
+  font-family: "Inter", sans-serif; /* フォントをInterに設定 */
+  display: flex;
+  flex-direction: column; /* 要素を縦方向に並べる */
+  justify-content: flex-start; /* 上部に寄せる */
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--secondary-color); /* 背景色を白に */
+  color: var(--text-color); /* 文字色を濃い灰色に */
+  overflow-x: hidden; /* 横方向のスクロールバーを非表示にする */
+}
+
+/* ナビゲーションバーのスタイル */
+.navbar {
+  width: 100%;
+  background-color: var(--primary-color); /* 背景色を黒に */
+  padding: 15px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 8px 8px; /* 下部に丸み */
+  position: sticky; /* スクロールしても固定 */
+  top: 0; /* 上部に固定 */
+  z-index: 1000; /* 他の要素より手前に表示 */
+}
+
+.nav-links {
+  list-style: none; /* リストの点を消す */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* リンクを中央に配置 */
+  gap: 30px; /* リンク間のスペース */
+}
+
+.nav-links li a {
+  color: var(--secondary-color); /* リンクの文字色を白に */
+  text-decoration: none; /* 下線を消す */
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease; /* ホバー時のアニメーション */
+}
+
+.nav-links li a:hover {
+  background-color: #333333; /* ホバー時の背景色を濃い灰色に */
+  border-radius: 8px; /* ホバー時に丸み */
+}
+
+/* アクティブなナビゲーションリンクのスタイル */
+.nav-links li a.active {
+  background-color: #333333; /* アクティブなリンクの背景色 */
+  color: var(--secondary-color);
+}
+
+/* ホームセクションの背景画像 */
+#home {
+  background-image: url("../assets/img/hill.jpg"); /* 背景画像を更新 */
+  background-size: cover; /* 背景画像をセクション全体に広げる */
+  background-position: center; /* 背景画像を中央に配置 */
+  background-repeat: no-repeat; /* 背景画像を繰り返さない */
+  margin-top: 0; /* メニューバー直下に配置 */
+}
+
+/* すべてのコンテンツセクションの初期状態（非表示とアニメーション準備） */
+.content-section {
+  opacity: 0; /* 最初は透明 */
+  transform: translateY(50px); /* 少し下から始まる */
+  transition: opacity 1s ease-out, transform 1s ease-out; /* アニメーションの時間とイージング */
+  width: 100%; /* 幅を確保 */
+  min-height: 100vh; /* 各セクションをビューポートの高さ全体に設定 */
+  display: flex; /* Flexboxを常に適用しておく */
+  flex-direction: column; /* コンテンツを中央に配置するためにflexboxを使用 */
+  justify-content: center; /* 縦方向中央揃え */
+  align-items: center;
+  padding-top: 50px; /* セクション上部のパディング */
+  padding-bottom: 50px; /* セクション下部のパディング */
+  box-sizing: border-box; /* パディングを高さに含める */
+  scroll-snap-align: start; /* スクロールスナップの開始位置に合わせる */
+}
+
+/* セクションがビューポートに入ったときに適用されるスタイル */
+.content-section.is-visible {
+  opacity: 1; /* 不透明にする */
+  transform: translateY(0); /* 元の位置に戻す */
+}
+
+/* メインコンテンツコンテナのスタイル */
+.container {
+  text-align: center;
+  padding: 40px; /* パディングを増やす */
+  max-width: 800px; /* 最大幅を設定 */
+  width: 90%; /* レスポンシブ対応 */
+  margin-top: 0; /* セクションのパディングで調整するため、ここでのマージンは削除 */
+}
+
+h1 {
+  color: var(--primary-color); /* 見出しの色を黒に */
+  margin-bottom: 20px;
+  font-size: 2.5em; /* フォントサイズを大きく */
+}
+
+h2 {
+  /* 新しく追加されたh2タグのスタイル */
+  color: var(--primary-color); /* 見出しの色を黒に */
+  margin-bottom: 20px;
+  font-size: 2em; /* h1より少し小さく */
+}
+
+p {
+  line-height: 1.8; /* 行の高さを調整 */
+  margin-bottom: 15px;
+  font-size: 1.1em; /* フォントサイズを調整 */
+  color: #555555; /* 段落の文字色を少し薄い灰色に */
+}
+
+ul {
+  /* リストのスタイル */
+  text-align: left; /* リストのテキストを左寄せに */
+  margin: 20px auto; /* 上下のマージンと中央揃え */
+  max-width: 700px; /* リストの最大幅 */
+  padding-left: 20px; /* 左パディング */
+}
+
+ul li {
+  margin-bottom: 10px; /* リストアイテム間のスペース */
+  line-height: 1.6;
+  color: #444444; /* リストアイテムの文字色 */
+}
+
+/* お問い合わせフォームのスタイル */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* フォーム要素間のスペース */
+  margin-top: 30px;
+  text-align: left; /* フォーム内のテキストを左寄せに */
+  max-width: 500px; /* フォームの最大幅 */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 1em;
+  width: 100%; /* 親要素の幅に合わせる */
+  box-sizing: border-box; /* パディングとボーダーを幅に含める */
+}
+
+.submit-button {
+  background-color: var(--primary-color); /* ボタンの背景色を黒に */
+  color: var(--secondary-color); /* ボタンの文字色を白に */
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  align-self: center; /* ボタンを中央に配置 */
+  width: auto; /* 幅をコンテンツに合わせる */
+  min-width: 150px; /* 最小幅を設定 */
+}
+
+.submit-button:hover {
+  background-color: var(--text-color); /* ホバー時の背景色を濃い灰色に */
+  transform: translateY(-2px); /* 少し上に移動するアニメーション */
+}
+
+/* レスポンシブデザインの調整 */
+@media (max-width: 768px) {
+  .nav-links {
+    flex-direction: column; /* 画面が小さいときは縦並び */
+    gap: 10px; /* リンク間のスペースを調整 */
+  }
+
+  .nav-links li a {
+    padding: 8px 10px;
+  }
+
+  .container {
+    padding: 30px;
+    margin-top: 30px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.8em;
+  }
+
+  .contact-form {
+    padding: 0 15px; /* モバイルでのパディング調整 */
+  }
+}
