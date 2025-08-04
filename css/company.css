@@ -1,0 +1,31 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+.company-info {
+    padding: 4rem 1rem;
+    background-color: #f9f9f9;
+}
+.company-info h1 {
+    text-align: center;
+    color: #2f80ed;
+    margin-bottom: 2rem;
+}
+.company-info table {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+.company-info th,
+.company-info td {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+.company-info th {
+    width: 30%;
+    background-color: #eef4fd;
+}

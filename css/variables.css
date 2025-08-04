@@ -1,0 +1,24 @@
+:root {
+  /* メインカラー（深めのネイビーブルー） */
+  --main-color: #2C3E50;
+
+  /* アクセントカラー（明るめブルー） */
+  --accent-color: #2980B9;
+
+  /* 背景色（淡いブルーグレー） */
+  --bg-color: #F5F8FA;
+
+  /* テキストカラー（標準） */
+  --text-color: #333333;
+
+  /* ライトアクセント（強調背景など） */
+  --light-accent: #E6F0FF;
+
+  /* ボタン用など */
+  --button-color: var(--main-color);
+  --button-text-color: #ffffff;
+
+  /* ボックス影やボーダー色に使える */
+  --border-color: #ddd;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}

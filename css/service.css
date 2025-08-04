@@ -1,0 +1,29 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+.service-section {
+    padding: 4rem 1rem;
+    background-color: #f9fbff;
+}
+.service-section h1 {
+    text-align: center;
+    color: #2f80ed;
+    margin-bottom: 3rem;
+}
+.service-item {
+    max-width: 800px;
+    margin: 0 auto 2.5rem;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.service-item h2 {
+    color: #2f80ed;
+    margin-bottom: 1rem;
+}
+.service-item p {
+    line-height: 1.7;
+}

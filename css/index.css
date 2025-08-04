@@ -1,0 +1,80 @@
+@import url('variables.css'); /* ← 別ファイル管理にしてもOK */
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  margin: 0;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+/* ヒーローセクション（動画のみ） */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-video video {
+  width: 60%;           /* 動画の横幅を縮小 */
+  max-width: 960px;     /* 最大サイズの制限（任意） */
+  height: auto;
+  object-fit: contain;  /* アスペクト比を維持したまま収まる */
+  border-radius: 8px;   /* 見た目を整える（任意） */
+}
+
+/* コンセプトセクション */
+.concept {
+  padding: 4rem 1rem;
+  background-color: var(--bg-color);
+  text-align: center;
+}
+.concept h2 {
+  color: var(--main-color);
+  margin-bottom: 1rem;
+}
+
+/* サービス紹介 */
+.services {
+  padding: 4rem 1rem;
+}
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 300px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.card h3 {
+  color: var(--main-color);
+}
+.card a {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--accent-color);
+  text-decoration: underline;
+}
+
+/* 代表挨拶リンク */
+.greeting-link {
+  padding: 4rem 1rem;
+  background-color: var(--light-accent);
+  text-align: center;
+}
+.greeting-link .btn {
+  margin-top: 1rem;
+  display: inline-block;
+  background: var(--main-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 4px;
+}

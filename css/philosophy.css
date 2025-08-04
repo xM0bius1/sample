@@ -1,0 +1,18 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+.philosophy-section {
+    padding: 4rem 1rem;
+    background-color: #eef4fd;
+    text-align: center;
+}
+.philosophy-section h1 {
+    color: #2f80ed;
+    margin-bottom: 2rem;
+}
+.philosophy-section p {
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.8;
+}

@@ -1,0 +1,18 @@
+.site-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+}
+.site-header .site-title a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #2f80ed;
+}
+.nav .nav-link {
+    color: #333;
+    margin-left: 1rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+.nav .nav-link:hover {
+    color: #2f80ed;
+}

@@ -1,0 +1,18 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+.rent-section {
+    padding: 4rem 1rem;
+    background-color: #f5fafd;
+    text-align: center;
+}
+.rent-section h1 {
+    color: #2f80ed;
+    margin-bottom: 2rem;
+}
+.rent-section p.lead {
+    font-size: 1.2rem;
+    color: #333;
+    line-height: 1.8;
+}
