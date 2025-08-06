@@ -39,6 +39,9 @@ body {
 .services {
   padding: 4rem 1rem;
 }
+.services h2 {
+  text-align: center;
+}
 .card-grid {
   display: flex;
   flex-wrap: wrap;
