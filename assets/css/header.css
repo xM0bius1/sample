@@ -16,3 +16,46 @@
 .nav .nav-link:hover {
     color: #2f80ed;
 }
+/* ハンバーガーボタン非表示（PC） */
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+}
+
+/* スマホ用ナビ制御 */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    z-index: 1001;
+  }
+
+  #nav-menu {
+    display: none;
+    position: absolute;
+    top: 64px; /* header高さに応じて調整 */
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #nav-menu.active {
+    display: block;
+  }
+
+  .nav {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .nav-item {
+    margin-bottom: 0.5rem;
+  }
+}
+.site-header {
+  position: relative; /* または fixed でも可 */
+  z-index: 1000;
+  background-color: white; /* 半透明など必要であれば rgba で調整 */
+}
