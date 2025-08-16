@@ -1,0 +1,86 @@
+/* 0) 共通ラッパ：左右の余白を確保して“狭い画面での詰まり”を回避 */
+.wrapper {
+  margin: 0 auto;
+  padding: 0 0;         /* モバイルの左右余白 */
+}
+
+/* 1) ヘッダー：PC/モバイルの表示切替と開閉メニューの見やすさ */
+.site-header { position: relative; z-index: 1000; }
+
+/* スマホ: ハンバーガー表示・メニューは縦積み */
+@media (max-width: 768px) {
+  #nav-menu .nav { flex-direction: column; padding: 12px; }
+  #nav-menu .nav-link { padding: 12px 6px; }
+}
+
+/* 2) ヒーロー（動画/画像共通）：横長・高さ控えめ、段階的に高さ調整 */
+.hero-section {
+  height: 50vh;            /* デフォ：PC寄り */
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background:#000;
+}
+.hero-video video,
+.hero-section img {
+  width: 100%;
+  max-width: 960px;
+  height: auto;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+@media (max-width: 992px) { .hero-section { height: 45vh; } }
+@media (max-width: 768px)  { .hero-section { height: 40vh; } }
+@media (max-width: 576px)  { .hero-section { height: 36vh; } }
+
+/* 3) カードグリッド：1→2→3列へ */
+.card-grid { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
+.card      { width: 100%; max-width: 560px; }
+@media (min-width: 768px)  { .card { width: calc(50% - 12px); max-width: none; } }
+@media (min-width: 992px)  { .card { width: calc(33.333% - 16px); } }
+
+/* 4) テキストの読みやすさ：行間・フォントサイズ微調整 */
+body { line-height: 1.7; }
+h1,h2,h3 { line-height: 1.3; }
+@media (max-width: 576px) {
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.3rem; }
+}
+
+/* 5) 会社概要テーブル：小画面は横スクロール */
+.table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-responsive table { min-width: 560px; } /* はみ出す→スクロール */
+
+/* 6) アクセスマップ：高さ調整 */
+.map-container { height: 420px; border-radius: 8px; overflow: hidden; }
+@media (max-width: 992px) { .map-container { height: 360px; } }
+@media (max-width: 768px) { .map-container { height: 300px; } }
+@media (max-width: 576px) { .map-container { height: 260px; } }
+
+/* 7) ボタン/リンク：タップ領域 */
+.btn, .nav-link {
+  min-height: 44px;               /* 指標：タップしやすい高さ */
+  display: inline-flex; align-items: center;
+}
+
+/* ▼ サイト全体のプライマリボタン配色を変数で制御（ページ毎の上書きが効く） */
+.btn-primary{
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--main-color);
+  --bs-btn-border-color: var(--main-color);
+
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--accent-color);
+  --bs-btn-hover-border-color: var(--accent-color);
+
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--accent-color);
+  --bs-btn-active-border-color: var(--accent-color);
+
+  --bs-btn-focus-shadow-rgb: 47,128,237; /* お好みで */
+}
+.text-primary { color: var(--main-color) !important; }
+
+
+
+

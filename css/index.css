@@ -7,47 +7,6 @@ body {
   background-color: var(--bg-color);
 }
 
-/* ヒーローセクション（動画のみ） */
-.hero-section {
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20vh;              /* 高さを抑えて統一感を出す */
-  background-color: #fff;    /* 背景黒でトリミング部分を目立たせない */
-}
-
-.hero-video video {
-  width: 100%;               /* 横幅をいっぱいに表示 */
-  max-width: 960px;          /* 最大幅を指定して見た目を整える */
-  height: auto;
-  max-height: 100%;          /* セクションの高さに収まるよう制限 */
-  object-fit: cover;         /* 全体が収まるようにトリミングしつつカバー */
-  border-radius: 8px;
-  position: relative;
-  z-index: 0;
-}
-
-.video-center video,
-.hero-video video {
-  z-index: 0; /* 明示的に後ろに送る */
-  position: relative;
-}
-
-@media screen and (max-width: 768px) {
-  .hero-section {
-    height: 20vh;
-  }
-
-  .hero-video video {
-    width: 100%;
-    height: auto;
-    max-height: 100%;
-    object-fit: cover;
-  }
-}
-
 /* コンセプトセクション */
 .concept {
   padding: 4rem 1rem;
@@ -65,12 +24,6 @@ body {
 }
 .services h2 {
   text-align: center;
-}
-.card-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
 }
 .card {
   background: #fff;
@@ -104,4 +57,50 @@ body {
   padding: 0.75rem 1.5rem;
   text-decoration: none;
   border-radius: 4px;
+}
+
+.services .row{
+  text-align: center;
+}
+/* 業務内容カード（index）の中央寄せ */
+.services .card-body {
+  text-align: center;
+}
+
+.services .card h3 {
+  margin-bottom: .5rem; /* 少しだけ間隔を整える（任意） */
+}
+
+.services .card a {
+  display: inline-block;  /* アンカーも中央に揃いやすく */
+  margin-top: .75rem;
+}
+
+/* 業務内容カード：要素内を中央寄せ */
+.services .card { 
+  text-align: center;            /* 見出し・本文を中央に */
+}
+
+.services .card .card-body {
+  text-align: inherit;           /* 念のため継承を確実に */
+}
+
+/* ボタンやリンクも中央に寄せる */
+.services .card .card-body a,
+.services .card .card-body .btn {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Services：col内でカードを中央寄せ */
+.services .row > .col {
+  display: flex;
+  justify-content: center;   /* 横方向センター */
+}
+
+/* カードは列より少し狭く（中央寄せが効く） */
+.services .card {
+  width: 100%;
+  max-width: 80%;          /* 好みで 20–24rem 程度に調整 */
 }

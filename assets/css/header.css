@@ -1,61 +1,60 @@
+/* ===== Header (Bootstrap Navbarベース) ===== */
 .site-header {
-    background-color: #ffffff;
-    border-bottom: 1px solid #ddd;
-}
-.site-header .site-title a {
-    text-decoration: none;
-    font-size: 1.5rem;
-    color: #2f80ed;
-}
-.nav .nav-link {
-    color: #333;
-    margin-left: 1rem;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-.nav .nav-link:hover {
-    color: #2f80ed;
-}
-/* ハンバーガーボタン非表示（PC） */
-.hamburger {
-  display: none;
-  font-size: 2rem;
-  background: none;
-  border: none;
-}
-
-/* スマホ用ナビ制御 */
-@media (max-width: 768px) {
-  .hamburger {
-    display: block;
-    z-index: 1001;
-  }
-
-  #nav-menu {
-    display: none;
-    position: absolute;
-    top: 64px; /* header高さに応じて調整 */
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  #nav-menu.active {
-    display: block;
-  }
-
-  .nav {
-    flex-direction: column;
-    padding: 1rem;
-  }
-
-  .nav-item {
-    margin-bottom: 0.5rem;
-  }
-}
-.site-header {
-  position: relative; /* または fixed でも可 */
+  position: relative;
   z-index: 1000;
-  background-color: white; /* 半透明など必要であれば rgba で調整 */
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.site-header .navbar-brand {
+  color: #2f80ed; font-weight: 700; text-decoration: none;
+}
+.site-header .navbar-brand:hover,
+.site-header .navbar-brand:focus { color: #2f80ed; text-decoration: none; }
+
+.navbar .nav-link {
+  color: #333; font-weight: 500; transition: color .2s;
+}
+.navbar .nav-link:hover,
+.navbar .nav-link:focus { color: #2f80ed; text-decoration: none; }
+.navbar .nav-link.active { color: #2f80ed; }
+
+.navbar-toggler { border: none; box-shadow: none !important; }
+.navbar-light .navbar-toggler-icon { width: 1.5em; height: 1.5em; }
+
+/* 小画面でのメニュー項目のタップしやすさ向上 */
+@media (max-width: 768px) {
+  .navbar .nav-link {
+    padding: .75rem .25rem;
+    min-height: 44px;    /* タップ領域 */
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* 余白の微調整（任意） */
+.site-header .navbar { padding-top: .75rem; padding-bottom: .75rem; }
+
+/* ヘッダーだけ幅を少し狭めて“中央寄せ感”を出す */
+.site-header .wrapper {
+    max-width: 95%;         /* ← 好みで 880–980px くらいで微調整 */
+  }
+@media (min-width: 768px) {
+  .site-header .wrapper {
+    max-width: 85%;         /* ← 好みで 880–980px くらいで微調整 */
+    padding-left: 5px;       /* 余白も少しだけ締める（任意） */
+    padding-right: 5px;
+  }
+}@media (min-width: 1000px) {
+  .site-header .wrapper {
+    max-width: 80%;         /* ← 好みで 880–980px くらいで微調整 */
+    padding-left: 12px;       /* 余白も少しだけ締める（任意） */
+    padding-right: 12px;
+  }
+}
+@media (min-width: 768px) {
+  .site-header .navbar .navbar-collapse {
+    flex-grow: 1;                /* 右に寄せる余地を作る */
+    justify-content: flex-end;   /* 右寄せ */
+  }
+  .site-header .navbar-nav { margin-left: 0; }
 }

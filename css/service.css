@@ -1,29 +1,71 @@
-body {
-    font-family: sans-serif;
-    margin: 0;
-}
+/* セクションの背景と余白 */
 .service-section {
-    padding: 4rem 1rem;
-    background-color: #f9fbff;
+  padding: 4rem 0;
+  background-color: #f9fbff; /* サイトのトーンに合わせて淡色 */
 }
+
+/* 見出しのトーン合わせ */
 .service-section h1 {
-    text-align: center;
-    color: #2f80ed;
-    margin-bottom: 3rem;
+  color: #2f80ed;
 }
-.service-item {
-    max-width: 800px;
-    margin: 0 auto 2.5rem;
-    padding: 1.5rem;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+
+/* 列内でカードを中央寄せ、カード幅を統一 */
+.service-section .service-card {
+  width: 100%;
+  max-width: 22rem;                 /* 20–24remで調整可 */
+  border: 1px solid #e6e9f0;
+  border-radius: 12px;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
-.service-item h2 {
-    color: #2f80ed;
-    margin-bottom: 1rem;
+
+/* カードの内側レイアウト */
+.service-section .service-card .card-body {
+  padding: 1.75rem;
 }
-.service-item p {
-    line-height: 1.7;
+
+/* タイトルの余白・見た目 */
+.service-section .service-card h2 {
+  margin-bottom: .5rem;
+  font-weight: 600;
+}
+
+/* ホバー時のわずかな持ち上がり効果 */
+.service-section .service-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+  border-color: #dfe4ee;
+}
+
+/* スマホでの余白調整 */
+@media (max-width: 576px) {
+  .service-section { padding: 2.5rem 0; }
+  .service-section .service-card .card-body { padding: 1.25rem; }
+}
+
+/* 旧スタイル（未使用）をクリーンアップ（安全のため残っていたら無効化）
+.service-item { display: none; }
+*/
+/* ▼ カードの高さを増やして揃える */
+.service-section .service-card {
+  min-height: 200px;            /* 基準の高さ（お好みで調整） */
+  display: flex;                 /* 中身を縦に伸ばすため */
+  flex-direction: column;
+}
+
+/* 中身を縦横センターに */
+.service-section .service-card .card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;          /* 横中央 */
+  justify-content: center;      /* 縦中央 */
+  padding: 2rem;                /* 余白少し増やす（任意） */
+}
+
+/* 画面幅に応じて高さを段階UP（任意） */
+@media (min-width: 768px) {
+  .service-section .service-card { min-height: 200px; }
+}
+@media (min-width: 992px) {
+  .service-section .service-card { min-height: 200px; }
 }

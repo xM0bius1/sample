@@ -16,23 +16,6 @@ function includeParts(id, url) {
       // HTML挿入
       container.insertAdjacentHTML('beforeend', data);
 
-      // --- IDごとの後処理（例: header 読み込み後に JS イベント追加） ---
-      if (id === "header") {
-        // 少し遅延させてからDOM取得
-        requestAnimationFrame(() => {
-          const hamburger = document.getElementById("hamburger-btn");
-          const navMenu = document.getElementById("nav-menu");
-
-          if (hamburger && navMenu) {
-            hamburger.addEventListener("click", () => {
-              navMenu.classList.toggle("active");
-            });
-          } else {
-            console.warn("ハンバーガーメニューの要素が見つかりませんでした");
-          }
-        });
-      }
-
       // script タグの再実行（必要に応じて）
       const scripts = container.querySelectorAll("script");
       scripts.forEach(script => {

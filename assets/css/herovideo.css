@@ -1,0 +1,40 @@
+/* ヒーローセクション（動画のみ） */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;              /* 高さを抑えて統一感を出す */
+  background-color: #fff;    /* 背景黒でトリミング部分を目立たせない */
+}
+
+.hero-video video {
+  width: 100%;               /* 横幅をいっぱいに表示 */
+  max-width: 100%;          /* 最大幅を指定して見た目を整える */
+  height: auto;
+  max-height: 100%;          /* セクションの高さに収まるよう制限 */
+  object-fit: cover;         /* 全体が収まるようにトリミングしつつカバー */
+  border-radius: 8px;
+  position: relative;
+  z-index: 0;
+}
+
+.video-center video,
+.hero-video video {
+  z-index: 0; /* 明示的に後ろに送る */
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .hero-section {
+    height: 20vh;
+  }
+
+  .hero-video video {
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+    object-fit: cover;
+  }
+}

@@ -1,3 +1,5 @@
+@import url('variables.css'); /* ← 別ファイル管理にしてもOK */
+
 body {
     font-family: sans-serif;
     margin: 0;
@@ -28,4 +30,45 @@ body {
 .company-info th {
     width: 30%;
     background-color: #eef4fd;
+}
+
+/* テーブルの最大幅を抑えて中央寄せ */
+.company-table-wrap {
+  max-width: 820px;         /* ← 好みで 760〜960px に調整可 */
+  margin: 0 auto;
+}
+
+/* 列幅やレイアウトの安定化 */
+.company-table {
+  table-layout: fixed;      /* 不要なら 'auto' に */
+  width: 100%;
+  background: #fff;
+}
+
+.company-table th {
+  width: 28%;               /* ラベル列を少し狭めに */
+  white-space: nowrap;      /* 折り返しを防ぐ（長文なら外す） */
+  color: var(--main-color); /* サイトのキーカラーに合わせる */
+}
+
+.company-table td {
+  width: 72%;
+  word-break: break-word;   /* 長い住所/メールの折り返し */
+}
+
+/* 余白・行高 */
+.company-table th,
+.company-table td {
+  padding: .9rem 1rem;      /* きつければ .75rem に */
+  vertical-align: middle;
+  font-size: 1rem;
+}
+
+/* スマホ最適化（ややコンパクトに） */
+@media (max-width: 576px) {
+  .company-table-wrap { max-width: 100%; }
+  .company-table { table-layout: auto; }  /* 自然な折り返し優先 */
+  .company-table th,
+  .company-table td { padding: .65rem .75rem; font-size: .95rem; }
+  .company-table th { white-space: normal; } /* スマホは折り返し可 */
 }

@@ -1,18 +1,46 @@
-body {
-    font-family: sans-serif;
-    margin: 0;
-}
+@import url('variables.css'); /* ← 別ファイル管理にしてもOK */
+
+/* ベース */
 .rent-section {
-    padding: 4rem 1rem;
-    background-color: #f5fafd;
-    text-align: center;
+  background-color: #f5fafd; /* 淡色背景で読みやすく */
 }
-.rent-section h1 {
-    color: #2f80ed;
-    margin-bottom: 2rem;
+
+/* 見出しカラーはサイトのキーカラーに合わせる */
+.rent-section h1 { color: var(--main-color, #2f80ed); }
+
+/* CTAカード：中央寄せ＋幅を適度に制限 */
+.rent-card {
+  max-width: 720px;      /* 640〜800pxで調整可 */
+  border: 1px solid #e6e9f0;
+  border-radius: 12px;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
-.rent-section p.lead {
-    font-size: 1.2rem;
-    color: #333;
-    line-height: 1.8;
+.rent-card .card-body { padding: 2rem; }
+
+.rent-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0,0,0,.08);
+  border-color: #dfe4ee;
+}
+
+/* ボタンの押しやすさと見た目 */
+.rent-section .btn {
+  padding: .75rem 1.5rem;
+}
+
+/* スマホ調整 */
+@media (max-width: 576px) {
+  .rent-card .card-body { padding: 1.25rem; }
+}
+
+
+/* 賃貸ページだけ白背景＋ブランド色文字に */
+.rent-section .btn-primary{
+  --bs-btn-color: var(--accent-color);
+  --bs-btn-bg: #fff;
+  --bs-btn-border-color: var(--accent-color);
+
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--accent-color);
+  --bs-btn-hover-border-color: var(--accent-color);
 }

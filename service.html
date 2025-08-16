@@ -1,42 +1,70 @@
+</html>
 <!DOCTYPE html>
 <html lang='ja'>
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>業務内容</title>
-    <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel='stylesheet' href='assets/css/common.css'>
-    <link rel='stylesheet' href='css/service.css'>
-    <link rel='stylesheet' href='assets/css/bootstrap.min.css'>
-    <link rel='stylesheet' href='assets/css/aos.css'>
-    <link rel="icon" href="favicon.ico" />
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <title>業務内容</title>
+
+  <!-- 読み込み順：Bootstrap → 共通CSS → ページCSS → ライブラリ -->
+  <link rel='stylesheet' href='assets/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='assets/css/header.css'>
+  <link rel='stylesheet' href='assets/css/footer.css'>
+  <link rel='stylesheet' href='assets/css/common.css'>
+  <link rel='stylesheet' href='assets/css/responsive.css'>
+  <link rel='stylesheet' href='css/service.css'>
+  <link rel='stylesheet' href='assets/css/aos.css'>
+  <link rel="icon" href="favicon.ico" />
 </head>
 <body>
-    <div id='header'></div>
-    <div class="page-visual">
-        <img src="assets/img/service_visual.jpg" alt="業務内容ページのビジュアル">
-    </div>
-    <main>
-        <section class='service-section'>
-            <div class='container'>
-                <h1>業務内容</h1>
-                <div class='service-item'>
-                    <h2>土地建物の売買及仲介</h2>
-                </div>
-                <div class='service-item'>
-                    <h2>土地建物の賃貸業務</h2>
-                </div>
-                <div class='service-item'>
-                    <h2>ビル管理業務</h2>
-                </div>
+  <div id='header'></div>
+
+  <div class="page-visual">
+    <img src="assets/img/service_visual.jpg" alt="業務内容ページのビジュアル">
+  </div>
+
+  <main class="service-section">
+    <div class="wrapper">
+      <header class="text-center mb-4">
+        <h1 class="h1 mb-2">業務内容</h1>
+        <p class="text-muted mb-0">売買・賃貸を中心に、不動産サービスを提供しています。</p>
+      </header>
+
+      <!-- 1→2→3列で自動レスポンシブ、列内でカードを中央配置 -->
+      <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
+        <div class="col d-flex justify-content-center" data-aos="fade-up">
+          <div class="card h-100 shadow-sm service-card">
+            <div class="card-body text-center">
+              <h2 class="h5 text-primary mb-2">土地建物の売買及仲介</h2>
+              <!-- 必要なら説明文やリンクをここに -->
             </div>
-        </section>
-    </main>
-    <div id='footer'></div>
-    <script src='assets/js/bootstrap.bundle.min.js'></script>
-    <script src='assets/js/aos.js'></script>
-    <script src='assets/js/include.js'></script>
-    <script>AOS.init();</script>
+          </div>
+        </div>
+
+        <div class="col d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="card h-100 shadow-sm service-card">
+            <div class="card-body text-center">
+              <h2 class="h5 text-primary mb-2">土地建物の賃貸業務</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="col d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="card h-100 shadow-sm service-card">
+            <div class="card-body text-center">
+              <h2 class="h5 text-primary mb-2">ビル管理業務</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id='footer'></div>
+
+  <script src='assets/js/bootstrap.bundle.min.js'></script>
+  <script src='assets/js/aos.js'></script>
+  <script src='assets/js/include.js'></script>
+  <script>AOS.init();</script>
 </body>
 </html>
