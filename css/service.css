@@ -69,3 +69,7 @@
 @media (min-width: 992px) {
   .service-section .service-card { min-height: 200px; }
 }
+
+
+.reveal-hidden { opacity: 0; transform: translateY(16px); transition: opacity .6s, transform .6s; }
+.reveal-visible { opacity: 1; transform: none; }

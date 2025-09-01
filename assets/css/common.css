@@ -4,4 +4,14 @@
   object-fit: cover;
   display: block;
 }
+@media (min-width:768px) {
+  .page-visual img{
+    max-height: 30vh;
+  }
+}
 
+.br-xs,.br-sm,.br-md,.br-lg{display:none;}
+@media (max-width:375.98px){ .br-xs{display:block;} }
+@media (min-width:376px) and (max-width:767.98px){ .br-sm{display:block;} }
+@media (min-width:768px) and (max-width:991.98px){ .br-md{display:block;} }
+@media (min-width:992px){ .br-lg{display:block;} }

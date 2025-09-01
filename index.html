@@ -19,6 +19,8 @@
     <main>
         <!-- ヒーロービジュアル -->
         <div id="hero-video"></div>
+
+        <div id="hero-end-sentinel" aria-hidden="true" style="height:1px;"></div>
         
         <div class="wrapper">
             <!-- コンセプト -->
@@ -31,10 +33,10 @@
             </section>
             
             <!-- サービス紹介 -->
-            <section class="py-5 services">
+            <section class="py-5 services reveal-after-hero reveal-hidden">
                 <div class="wrapper">
-                    <h2 class="text-center mb-4">主な業務内容</h2>
-                    <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-2">
+                    <h2 class="text-center mb-4" data-aos="fade-up">主な業務内容</h2>
+                    <div class="row g-4 row-cols-1 row-cols-md-2 row-cols-lg-2" data-aos="fade-up">
                         <div class="col">
                             <div class="card h-100 shadow-sm">
                                 <div class="card-body">
@@ -57,7 +59,7 @@
                 </div>
             </section>
             <!-- 代表挨拶への導線 -->
-            <section class='greeting-link'>
+            <section class='greeting-link reveal-after-hero reveal-hidden'>
                 <div class='container'>
                     <p>大晃建設株式会社の想いを、代表からお伝えします。</p>
                     <a href='greeting.html' class='btn'>代表挨拶を見る</a>
@@ -65,7 +67,9 @@
             </section>
         </div>
     </main>
-    <div id='footer'></div>
+    <section class='reveal-after-hero reveal-hidden'>
+        <div id='footer'></div>
+    </section>
     <script src='assets/js/bootstrap.bundle.min.js'></script>
     <script src='assets/js/aos.js'></script>
     <script src='assets/js/include.js'></script>
