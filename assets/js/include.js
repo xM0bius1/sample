@@ -1,45 +1,61 @@
-function includeParts(id, url) {
-  fetch(url)
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`${url} 読み込みエラー: ${res.status}`);
-      }
-      return res.text();
-    })
-    .then(data => {
-      const container = document.getElementById(id);
-      if (!container) {
-        console.warn(`ID ${id} が見つかりませんでした`);
-        return;
-      }
+// ====== パーツ読み込み（Promise対応・重複script抑止） ======
+async function includeParts(id, url, afterInsert) {
+  const container = document.getElementById(id);
+  if (!container) {
+    console.warn(`ID ${id} が見つかりませんでした`);
+    return;
+  }
+  try {
+    const res = await fetch(url, { cache: 'no-cache' });
+    if (!res.ok) throw new Error(`${url} 読み込みエラー: ${res.status}`);
+    const html = await res.text();
 
-      // HTML挿入
-      container.insertAdjacentHTML('beforeend', data);
+    // HTML挿入
+    container.insertAdjacentHTML('beforeend', html);
 
-      // script タグの再実行（必要に応じて）
-      const scripts = container.querySelectorAll("script");
-      scripts.forEach(script => {
-        const newScript = document.createElement("script");
-        if (script.src) {
-          newScript.src = script.src;
-        } else {
-          newScript.textContent = script.textContent;
-        }
-        document.body.appendChild(newScript);
-      });
-    })
-    .catch(err => console.error("読み込み失敗:", err));
+    // script タグの再実行（既に読み込み済みの外部JSはスキップ）
+    const scripts = container.querySelectorAll('script');
+    scripts.forEach((script) => {
+      const newScript = document.createElement('script');
+      if (script.src) {
+        // 既に同一srcが存在するならスキップ（重複実行防止）
+        const exists = !!document.querySelector(`script[src="${script.src}"]`);
+        if (exists) return;
+        newScript.src = script.src;
+        newScript.defer = true;
+      } else {
+        newScript.textContent = script.textContent;
+      }
+      document.body.appendChild(newScript);
+    });
+
+    // 挿入後フック
+    if (typeof afterInsert === 'function') afterInsert(container);
+  } catch (err) {
+    console.error('読み込み失敗:', err);
+  }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  includeParts("header", "assets/parts/header.html");
-  includeParts("footer", "assets/parts/footer.html");
-  includeParts("hero-video", "assets/parts/herovideo.html");
-});
+// ====== ヘッダー専用フック（ハンバーガー配線） ======
+function wireHeader(container) {
+  // カスタム実装（id="hamburger-btn" と id="nav-menu" の組み合わせ想定）
+  const hamburger = container.querySelector('#hamburger-btn');
+  const navMenu = container.querySelector('#nav-menu');
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+    // モバイル：リンククリックで閉じる
+    navMenu.querySelectorAll('a').forEach((a) =>
+      a.addEventListener('click', () => navMenu.classList.remove('active'))
+    );
+  }
+  // Bootstrap Navbar を使っている場合は data-bs-* で動くので特に不要
+}
 
-// --- AOS 初期化 & スタッガー（遅延の自動付与） ---
+// ====== AOS 初期化 & スタッガー（自動ディレイ） ======
 function setupAOS() {
-  // prefers-reduced-motion を尊重
+  if (!window.AOS) return; // 読み込まれていなければスキップ
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   AOS.init({
@@ -50,55 +66,31 @@ function setupAOS() {
     disable: () => reduce
   });
 
-  // .stagger コンテナ内の AOS要素に 0,100,200... と遅延を自動付与
-  document.querySelectorAll('.stagger').forEach(group => {
-    const step = Number(group.dataset.stagger || 100); // 既定100ms
+  // .stagger コンテナ配下の [data-aos] に 0,100,200... を自動付与
+  document.querySelectorAll('.stagger').forEach((group) => {
+    const step = Number(group.dataset.stagger || 100);
     group.querySelectorAll('[data-aos]').forEach((el, i) => {
-      el.setAttribute('data-aos-delay', String(i * step));
+      // 既に delay 指定があれば尊重
+      if (!el.hasAttribute('data-aos-delay')) {
+        el.setAttribute('data-aos-delay', String(i * step));
+      }
     });
   });
+
+  // 部品読み込み後のレイアウト反映
+  if (typeof AOS.refreshHard === 'function') AOS.refreshHard();
 }
 
-// 既存の includeParts 実行後に AOS をセットアップ
-window.addEventListener('load', setupAOS);
-
-// --- ヒーローを少しスクロールしたら .reveal-after-hero を表示（window.scrollY 版） ---
+// ====== 起動シーケンス ======
 document.addEventListener('DOMContentLoaded', () => {
-  const targets = Array.from(document.querySelectorAll('.reveal-after-hero'));
-  if (!targets.length) return;
-
-  const hero = document.querySelector('.hero-section');
-
-  // ヒーロー高さの 5% or 最低20px をしきい値に
-  const getThreshold = () => {
-    const base = hero ? Math.floor(hero.clientHeight * 0.05) : 0;
-    return Math.max(20, base);
-  };
-
-  let threshold = getThreshold();
-  let revealed = false;
-
-  const reveal = () => {
-    targets.forEach(el => {
-      el.classList.remove('reveal-hidden');
-      el.classList.add('reveal-visible');
-    });
-  };
-
-  const onScroll = () => {
-    if (revealed) return;
-    if (window.scrollY > threshold) {
-      reveal();
-      revealed = true;
-      window.removeEventListener('scroll', onScroll);
-    }
-  };
-
-  // 初期チェック & 監視
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', () => {
-    threshold = getThreshold();
-    onScroll();
+  // パーツ読み込み（完了後に初期化をまとめて行う）
+  Promise.all([
+    includeParts('header', 'assets/parts/header.html', wireHeader),
+    includeParts('footer', 'assets/parts/footer.html'),
+    includeParts('hero-video', 'assets/parts/herovideo.html')
+  ]).finally(() => {
+    setupAOS();
+    setupFadeInOnScroll();
+    setupRevealAfterHero();
   });
 });

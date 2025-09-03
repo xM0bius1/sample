@@ -5,15 +5,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 20vh;              /* 高さを抑えて統一感を出す */
   background-color: #fff;    /* 背景黒でトリミング部分を目立たせない */
 }
-@media (min-width:768px) {
-  .page-visual img{
-    max-height: 30vh;
-  }
-}
-
 
 .hero-video video {
   width: 100%;               /* 横幅をいっぱいに表示 */
@@ -33,10 +26,6 @@
 }
 
 @media screen and (max-width: 768px) {
-  .hero-section {
-    height: 20vh;
-  }
-
   .hero-video video {
     width: 100%;
     height: auto;

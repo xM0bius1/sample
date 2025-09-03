@@ -16,3 +16,7 @@ body {
     margin: 0 auto 1.5rem;
     line-height: 1.8;
 }
+.container p{ font-size: 17px; }
+@media (max-width: 992px) { .container p { font-size: 17px; } }
+@media (max-width: 768px)  { .container p { font-size: 17px; } }
+@media (max-width: 576px)  { .container p { font-size: 14px; } }

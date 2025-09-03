@@ -104,6 +104,3 @@ body {
   width: 100%;
   max-width: 80%;          /* 好みで 20–24rem 程度に調整 */
 }
-
-.reveal-hidden { opacity: 0; transform: translateY(16px); transition: opacity .6s, transform .6s; }
-.reveal-visible { opacity: 1; transform: none; }

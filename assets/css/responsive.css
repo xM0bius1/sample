@@ -15,7 +15,7 @@
 
 /* 2) ヒーロー（動画/画像共通）：横長・高さ控えめ、段階的に高さ調整 */
 .hero-section {
-  height: 50vh;            /* デフォ：PC寄り */
+  height: 40vh;            /* デフォ：PC寄り */
   display: flex; align-items: center; justify-content: center;
   overflow: hidden; background:#000;
 }
@@ -29,9 +29,14 @@
   border-radius: 8px;
 }
 
-@media (max-width: 992px) { .hero-section { height: 45vh; } }
-@media (max-width: 768px)  { .hero-section { height: 40vh; } }
-@media (max-width: 576px)  { .hero-section { height: 36vh; } }
+@media (max-width: 992px) { .hero-section { height: 40vh; } }
+@media (max-width: 768px)  { .hero-section { height: 30vh; } }
+@media (max-width: 576px)  { .hero-section { height: 20vh; } }
+
+.page-visual{ height: 40vh; }
+@media (max-width: 992px) { .page-visual { height: 40vh; } }
+@media (max-width: 768px)  { .page-visual { height: 30vh; } }
+@media (max-width: 576px)  { .page-visual { height: 20vh; } }
 
 /* 3) カードグリッド：1→2→3列へ */
 .card-grid { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; }
@@ -80,7 +85,3 @@ h1,h2,h3 { line-height: 1.3; }
   --bs-btn-focus-shadow-rgb: 47,128,237; /* お好みで */
 }
 .text-primary { color: var(--main-color) !important; }
-
-
-
-
