@@ -90,7 +90,5 @@ document.addEventListener('DOMContentLoaded', () => {
     includeParts('hero-video', 'assets/parts/herovideo.html')
   ]).finally(() => {
     setupAOS();
-    setupFadeInOnScroll();
-    setupRevealAfterHero();
   });
 });
