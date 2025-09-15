@@ -54,33 +54,52 @@ function wireHeader(container) {
 }
 
 // ====== AOS 初期化 & スタッガー（自動ディレイ） ======
-function setupAOS() {
-  if (!window.AOS) return; // 読み込まれていなければスキップ
+// 幅が変わったら呼び直す用の小さなデバウンス
+function debounce(fn, ms = 200){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms); }; }
+
+// PC判定（Bootstrapに合わせて lg=992px 以上をPC扱い）
+const isDesktop = () => window.innerWidth >= 768;
+
+let lastDisabled; // 直前の disable 状態を記録
+
+function setupAOSByWidth(){
+  if (!window.AOS) return;
+
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const disabled = reduce || isDesktop();   // ← PCでは無効化（必要なら >=1200 に変えてOK）
 
   AOS.init({
     offset: 120,
     duration: reduce ? 0 : 700,
     easing: 'ease-out',
     once: true,
-    disable: () => reduce
+    disable: () => disabled
   });
 
-  // .stagger コンテナ配下の [data-aos] に 0,100,200... を自動付与
-  document.querySelectorAll('.stagger').forEach((group) => {
+  // .stagger の自動ディレイ（既存仕様）
+  document.querySelectorAll('.stagger').forEach(group => {
     const step = Number(group.dataset.stagger || 100);
     group.querySelectorAll('[data-aos]').forEach((el, i) => {
-      // 既に delay 指定があれば尊重
-      if (!el.hasAttribute('data-aos-delay')) {
-        el.setAttribute('data-aos-delay', String(i * step));
-      }
+      if (!el.hasAttribute('data-aos-delay')) el.setAttribute('data-aos-delay', String(i * step));
     });
   });
 
-  // 部品読み込み後のレイアウト反映
+  // レイアウト確定後に反映
   if (typeof AOS.refreshHard === 'function') AOS.refreshHard();
+
+  lastDisabled = disabled;
 }
 
+// 初期化
+window.addEventListener('load', setupAOSByWidth);
+
+// ブレークポイントを跨いだら再初期化／同一なら refresh
+window.addEventListener('resize', debounce(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const disabled = reduce || isDesktop();
+  if (disabled !== lastDisabled) setupAOSByWidth();
+  else if (window.AOS) AOS.refresh();
+}, 200));
 // ====== 起動シーケンス ======
 document.addEventListener('DOMContentLoaded', () => {
   // パーツ読み込み（完了後に初期化をまとめて行う）

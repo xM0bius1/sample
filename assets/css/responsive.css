@@ -33,13 +33,13 @@
   object-fit: cover;
 }
 
-@media (max-width: 992px) { .hero-section { height: 40vh; } }
-@media (max-width: 768px)  { .hero-section { height: 30vh; } }
+@media (max-width: 992px) { .hero-section { height: 30vh; } }
+@media (max-width: 768px)  { .hero-section { height: 20vh; } }
 @media (max-width: 576px)  { .hero-section { height: 20vh; } }
 
 .page-visual{ height: 40vh; }
-@media (max-width: 992px) { .page-visual { height: 40vh; } }
-@media (max-width: 768px)  { .page-visual { height: 30vh; } }
+@media (max-width: 992px) { .page-visual { height: 30vh; } }
+@media (max-width: 768px)  { .page-visual { height: 20vh; } }
 @media (max-width: 576px)  { .page-visual { height: 20vh; } }
 
 /* 3) カードグリッド：1→2→3列へ */

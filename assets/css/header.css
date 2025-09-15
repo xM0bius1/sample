@@ -40,7 +40,7 @@
   }
 @media (min-width: 768px) {
   .site-header .wrapper {
-    max-width: 85%;         /* ← 好みで 880–980px くらいで微調整 */
+    max-width: 93%;         /* ← 好みで 880–980px くらいで微調整 */
     padding-left: 5px;       /* 余白も少しだけ締める（任意） */
     padding-right: 5px;
   }
